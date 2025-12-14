@@ -1,4 +1,5 @@
-###  Python Demo Apps
+###  Python Demo Apps <img width="20" height="20" alt="image" src="https://github.com/user-attachments/assets/a47ad71c-8d49-4662-b709-9c82ab233846" />
+
 
 
 DATA TYPES : 
