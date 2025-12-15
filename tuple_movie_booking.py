@@ -1,43 +1,86 @@
 import streamlit as st
 
-st.title("🎬 Simple Movie Booking System")
-st.write("This app demonstrates the use of Python Tuples")
+st.title("🎬 Movie Ticket Booking System")
+st.write("This app demonstrates LIST vs TUPLE using a real booking example")
 
-# ------------------------------------
-# FIXED DATA USING TUPLES
-# ------------------------------------
+# -------------------------------------------------
+# MOVIES → LIST (CAN CHANGE)
+# -------------------------------------------------
+if "movies" not in st.session_state:
+    st.session_state.movies = ["Inception", "Interstellar", "Avengers"]
 
-movies = ("Avengers", "Inception", "Interstellar", "Jawan")
+movies = st.session_state.movies
+
+# -------------------------------------------------
+# SEATS → TUPLE (FIXED, ORDERED)
+# -------------------------------------------------
 seats = ("A1", "A2", "A3", "A4", "A5")
 
-# ------------------------------------
-# DISPLAY AVAILABLE OPTIONS
-# ------------------------------------
+# -------------------------------------------------
+# BOOKED SEATS → DICTIONARY
+# -------------------------------------------------
+if "booked" not in st.session_state:
+    st.session_state.booked = {}
 
-st.subheader("🎥 Available Movies")
-st.write(movies)
+booked = st.session_state.booked
 
-st.subheader("💺 Available Seats")
-st.write(seats)
+# -------------------------------------------------
+# TABS
+# -------------------------------------------------
+tab1, tab2 = st.tabs(["🎥 Movie Manager", "🎟 Book Ticket"])
 
-# ------------------------------------
-# USER INPUT
-# ------------------------------------
+# =================================================
+# TAB 1 — MOVIE MANAGER (LIST)
+# =================================================
+with tab1:
+    st.header("🎥 Movie Manager (LIST)")
 
-movie_choice = st.text_input("Which movie do you want to watch?")
-seat_choice = st.text_input("Choose your seat")
+    st.subheader("Available Movies")
+    st.write(movies)
 
-# ------------------------------------
-# BOOKING LOGIC
-# ------------------------------------
+    new_movie = st.text_input("Add a new movie")
+    if st.button("Add Movie"):
+        movies.append(new_movie)
+        st.success("Movie added successfully!")
+        st.write(movies)
 
-if st.button("Book Ticket"):
-    if movie_choice in movies:
-        if seat_choice in seats:
-            st.success("✅ Booking Confirmed!")
-            st.write("🎬 Movie:", movie_choice)
-            st.write("💺 Seat:", seat_choice)
+    remove_movie = st.text_input("Remove a movie")
+    if st.button("Remove Movie"):
+        if remove_movie in movies:
+            movies.remove(remove_movie)
+            st.success("Movie removed successfully!")
         else:
+            st.error("Movie not found")
+        st.write(movies)
+
+# =================================================
+# TAB 2 — TICKET BOOKING (TUPLE + DICT)
+# =================================================
+with tab2:
+    st.header("🎟 Ticket Booking")
+
+    st.subheader("Available Movies")
+    st.write(movies)
+
+    movie = st.selectbox("Select movie", movies)
+
+    st.subheader("Seat Layout (TUPLE — Fixed)")
+    st.write(seats)
+
+    seat = st.text_input("Enter seat number (A1–A5)")
+
+    if st.button("Book Seat"):
+        key = movie + "_" + seat
+
+        if seat not in seats:
             st.error("❌ Invalid seat number")
-    else:
-        st.error("❌ Movie not available")
+
+        elif key in booked:
+            st.error("❌ Seat already booked for this movie")
+
+        else:
+            booked[key] = "BOOKED"
+            st.success(f"✅ Seat {seat} booked for {movie}")
+
+    st.subheader("📌 Booked Seats")
+    st.write(booked)
