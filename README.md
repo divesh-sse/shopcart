@@ -21,6 +21,6 @@ Dict demo : https://grocerrystore.streamlit.app/
 
 Tuple Demo - https://bookmovie.streamlit.app/
 
-COLAB LINK
+[COLAB LINK](https://colab.research.google.com/drive/1pUlSaSwmqv5K3XMegMFW3QZdIRzETdyP?usp=sharing)
 
 ---
