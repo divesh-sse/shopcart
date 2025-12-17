@@ -14,10 +14,10 @@ genres_list = [
     "Hip Hop",
     "Classical",
     "EDM",
-    "Country",
-    "Blues",
+    "Techno",
+    "Retro",
     "Metal",
-    "Reggae"
+    "Drill"
 ]
 
 st.subheader("🎵 Available Genres (LIST)")
@@ -31,13 +31,13 @@ st.header("🎧 Select Music Genres")
 student1_selection = st.multiselect(
     "Student 1 - Select genres",
     genres_list,
-    default=["Rock", "Pop", "Jazz"]
+    default=["Hip Hop"]
 )
 
 student2_selection = st.multiselect(
     "Student 2 - Select genres",
     genres_list,
-    default=["Pop", "Jazz", "EDM"]
+    default=["EDM"]
 )
 
 # ------------------------------------
@@ -69,4 +69,4 @@ st.write("🌍 All Unique Genres:", all_genres)
 st.write("🎯 Only Student 1 Likes:", only_student1)
 st.write("🎯 Only Student 2 Likes:", only_student2)
 
-st.success("✅ LIST → SET → SET OPERATIONS demonstrated clearly!")
+st.success("✅ Sorted!")
