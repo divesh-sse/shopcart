@@ -53,8 +53,8 @@ student2_set = set(student2_selection)
 # ------------------------------------
 st.subheader("📌 Student Genre Sets (Unique Values)")
 
-st.write("Student 1 Set:", student1_set)
-st.write("Student 2 Set:", student2_set)
+st.write("My Set:", student1_set)
+st.write("My friends set :", student2_set)
 
 # ------------------------------------
 # SET OPERATIONS
@@ -68,7 +68,7 @@ only_student2 = student2_set - student1_set
 
 st.write("🤝 Common Genres:", common_genres)
 st.write("🌍 All Unique Genres:", all_genres)
-st.write("🎯 Only Student 1 Likes:", only_student1)
-st.write("🎯 Only Student 2 Likes:", only_student2)
+st.write("🎯 Your unique taste:", only_student1)
+st.write("🎯 Your friends unique taste:", only_student2)
 
 st.success("✅ Sorted!")
