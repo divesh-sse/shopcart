@@ -1,71 +1,68 @@
 import streamlit as st
 
-st.title("🎧 Student Music Interest Analyzer")
-st.write("Understanding LIST vs SET using music genres")
+st.title("🛒 Mini Grocery Store App")
+st.write("A simple Streamlit app to understand Python Dictionaries")
 
-# ------------------------------------
-# LIST OF GENRES (FIXED OPTIONS)
-# ------------------------------------
-genres_list = [
-    "Rock",
-    "Pop",
-    "Jazz",
-    "Hip Hop",
-    "Classical",
-    "EDM",
-    "Country",
-    "Blues",
-    "Metal",
-    "Reggae"
-]
+# ---------------------------------------
+# STORE DICTIONARY (KEY → VALUE)
+# ---------------------------------------
 
-st.subheader("🎵 Available Genres (LIST)")
-st.write(genres_list)
+if "store" not in st.session_state:
+    st.session_state.store = {
+        "rice": 45,
+        "wheat": 38,
+        "milk": 30,
+        "oil": 180
+    }
 
-# ------------------------------------
-# STUDENT SELECTION (FROM LIST)
-# ------------------------------------
-st.header("🎧 Select Music Genres")
+store = st.session_state.store
 
-student1_selection = st.multiselect(
-    "Student 1 - Select genres",
-    genres_list,
-    default=["Rock", "Pop", "Jazz"]
-)
+# ---------------------------------------
+# TABS
+# ---------------------------------------
 
-student2_selection = st.multiselect(
-    "Student 2 - Select genres",
-    genres_list,
-    default=["Pop", "Jazz", "EDM"]
-)
+tab1, tab2 = st.tabs(["🧑‍💼 Shopkeeper", "🛍 Customer"])
 
-# ------------------------------------
-# CONVERT LIST TO SET
-# ------------------------------------
-student1_set = set(student1_selection)
-student2_set = set(student2_selection)
+# =======================================
+# SHOPKEEPER TAB
+# =======================================
+with tab1:
+    st.header("🧑‍💼 Money Minded Shopkeeper ")
 
-# ------------------------------------
-# DISPLAY SETS
-# ------------------------------------
-st.subheader("📌 Student Genre Sets (Unique Values)")
+    st.subheader("📦 Current Store Items")
+    st.write(store)
 
-st.write("Student 1 Set:", student1_set)
-st.write("Student 2 Set:", student2_set)
+    st.subheader("➕ Add new Item ")
 
-# ------------------------------------
-# SET OPERATIONS
-# ------------------------------------
-st.header("🔍 Set Operations")
+    item_name = st.text_input("Item name")
+    item_price = st.number_input("Item price", min_value=1)
 
-common_genres = student1_set & student2_set
-all_genres = student1_set | student2_set
-only_student1 = student1_set - student2_set
-only_student2 = student2_set - student1_set
+    if st.button("Add this "):
+        store[item_name] = item_price
+        st.success(f"{item_name} added successfully!")
+        st.write("Updated Store:", store)
 
-st.write("🤝 Common Genres:", common_genres)
-st.write("🌍 All Unique Genres:", all_genres)
-st.write("🎯 Only Student 1 Likes:", only_student1)
-st.write("🎯 Only Student 2 Likes:", only_student2)
+# =======================================
+# CUSTOMER TAB
+# =======================================
+with tab2:
+    st.header("🛍 yo Customerzz")
 
-st.success("✅ LIST → SET → SET OPERATIONS demonstrated clearly!")
+    st.subheader("🧾 Thats All i got man")
+    st.write(store)
+
+    item = st.text_input("Enter only one item name to buy")
+    quantity = st.number_input("Enter quantity", min_value=1)
+
+    if st.button("Generate Bill"):
+        if item in store:
+            price = store[item]
+            total = price * quantity
+
+            st.write("🛒 Item:", item)
+            st.write("💰 Price per unit:", price)
+            st.write("📦 Quantity:", quantity)
+            st.success(f"🧾 Total Bill: ₹{total}")
+        else:
+            st.error("❌ Item not available in store")
+
