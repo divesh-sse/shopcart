@@ -1,8 +1,10 @@
 
 import streamlit as st
 
-st.title("🎧 Student Music Interest Analyzer")
-st.write("Understanding LIST vs SET using music genres")
+st.title("🎧 Music Interest Analyzer")
+
+st.write("Just list the genres you like and your friend")
+st.write("Remember how when you login spotify  it asks you what kind of music you like")
 
 # ------------------------------------
 # LIST OF GENRES (FIXED OPTIONS)
@@ -29,13 +31,13 @@ st.write(genres_list)
 st.header("🎧 Select Music Genres")
 
 student1_selection = st.multiselect(
-    "Student 1 - Select genres",
+    "I like these genres",
     genres_list,
     default=["Hip Hop"]
 )
 
 student2_selection = st.multiselect(
-    "Student 2 - Select genres",
+    "My friend likes these",
     genres_list,
     default=["EDM"]
 )
