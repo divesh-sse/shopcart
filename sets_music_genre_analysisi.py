@@ -51,7 +51,7 @@ student2_set = set(student2_selection)
 # ------------------------------------
 # DISPLAY SETS
 # ------------------------------------
-st.subheader("📌 Student Genre Sets (Unique Values)")
+st.subheader("📌 Thats all man (Unique Values)")
 
 st.write("My Set:", student1_set)
 st.write("My friends set :", student2_set)
