@@ -2,13 +2,13 @@ import streamlit as st
 import random
 
 st.title("🎮 Guess The Number Game")
-st.write("Guess a number between 1 and 50. You get 6 chances!")
+st.write("Guess a number between 1 and 10. You get 6 chances!")
 
 # -------------------------
 # SESSION STATE
 # -------------------------
 if "secret" not in st.session_state:
-    st.session_state.secret = random.randint(1, 50)
+    st.session_state.secret = random.randint(1, 10)
 
 if "attempts" not in st.session_state:
     st.session_state.attempts = 6
