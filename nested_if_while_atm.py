@@ -91,4 +91,4 @@ if st.session_state.logged_in:
 st.divider()
 if st.button("🔄 Reset ATM"):
     st.session_state.clear()
-    st.experimental_rerun()
+    st.rerun()
